@@ -1,0 +1,12 @@
+.bundle/
+log/*.log
+pkg/
+
+# Ignore backup files
+*~
+
+# Ignore gem builds
+*.gem
+
+# Ignore wwtd files
+vendor/

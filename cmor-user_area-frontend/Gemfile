@@ -1,0 +1,7 @@
+source "https://rubygems.org"
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+gemspec
+
+gem "cmor", path: "../"
+gem "cmor-user_area", path: "../cmor-user_area"
+gem "rails", ">= 7.0"

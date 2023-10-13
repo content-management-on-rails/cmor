@@ -1,0 +1,13 @@
+.row
+  .col-12.col-md-6
+    = form.input :active_from, as: :date_time_picker, side_by_side: true
+  .col-12.col-md-6
+    = form.input :active_to, as: :date_time_picker, side_by_side: true
+
+.row
+  .col
+    = form.input :can_write
+
+.row
+  .col
+    = form.input :description
