@@ -4,6 +4,8 @@ module Cmor
       class Settable < Rao::ActiveCollection::Base
         attr_accessor :id, :key, :namespace, :default, :validations
 
+        add_attribute_names :value
+
         validates :namespace, presence: true
         validates :key, presence: true, exclusion: { in: ->(record) { self.all.map(&:id) } }
 
