@@ -13,28 +13,6 @@ module Cmor
           Digest::SHA1.hexdigest("#{normalize_namespace(record.namespace)}.#{normalize_key(record.key)}")
         end
 
-#        def self.register(namespace:, key:, default:, validations: {})
-#          settable = new(key: key.to_s, namespace: normalize_namespace(namespace), default: default, validations: validations)
-#          if settable.valid?
-#            collection.push(settable)
-#            settable
-#          else
-#            raise "Settable is invalid: #{settable.errors.full_messages.to_sentence}"
-#          end
-#        end
-#
-#        def self._all
-#          @all ||= []
-#        end
-#
-#        def self.find_by_namespace_and_key(namespace, key)
-#          _all.find { |setting| normalize_namespace(setting.namespace) == normalize_namespace(namespace) && normalize_key(setting.key) == normalize_key(key) }
-#        end
-#
-#        def id
-#          Digest::SHA1.hexdigest("#{normalize_namespace(namespace)}.#{normalize_key(key)}")
-#        end
-
         def errors
           if setting&.errors&.any?
             super.dup.tap do |errors|
@@ -47,10 +25,6 @@ module Cmor
             super
           end
         end
-
-#        def save
-#          super && setting.save
-#        end
 
         def setting
           begin
