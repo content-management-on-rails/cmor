@@ -17,7 +17,7 @@ module Cmor
 
       def self.set(namespace, key, value)
         settable = Cmor::Core::Settings::Settable.where(namespace: namespace, key: key).first!
-        settable.update!(value: value)
+        settable.update!(content: value)
       end
     end
   end

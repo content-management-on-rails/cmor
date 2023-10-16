@@ -5,15 +5,15 @@ en:
     cmor-core-settings-engine: settings
   activerecord:
     models:
-      cmor/core/settings/setting:
-        one: Setting
-        other: Settings
+      cmor/core/settings/value:
+        one: Wert
+        other: Werte
     attributes:
-      cmor/core/settings/setting:
+      cmor/core/settings/value:
         id: ID
         namespace: Namespace
         key: Key
-        value: Value
+        content: Inhalt
         created_at: Created at
         updated_at: Updated at
   cmor:

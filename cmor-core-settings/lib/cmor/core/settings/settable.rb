@@ -28,8 +28,8 @@ module Cmor
 
         def setting
           begin
-            return nil unless Cmor::Core::Settings::Setting.table_exists?
-            @setting ||= Cmor::Core::Settings::Setting.find_or_initialize_by(namespace: namespace, key: key).tap do |setting|
+            return nil unless Cmor::Core::Settings::Value.table_exists?
+            @setting ||= Cmor::Core::Settings::Value.find_or_initialize_by(namespace: namespace, key: key).tap do |setting|
               setting.validations = validations
               setting
             end
@@ -44,7 +44,7 @@ module Cmor
         end
 
         def update(attributes)
-          setting.update(attributes)
+          setting.update(content: attributes[:value])
         end
 
         def update!(attributes)
@@ -52,11 +52,11 @@ module Cmor
         end
 
         def value=(value)
-          setting.value = value
+          setting.content = value
         end
 
         def value
-          setting.persisted? ? setting.value : default
+          setting.persisted? ? setting.content : default
         end
 
         def human
