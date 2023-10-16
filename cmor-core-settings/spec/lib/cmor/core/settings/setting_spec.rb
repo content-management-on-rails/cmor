@@ -1,11 +1,11 @@
 require "rails_helper"
 
-RSpec.describe Cmor::Core::Settings::Settable, type: :model do
+RSpec.describe Cmor::Core::Settings::Setting, type: :model do
   around(:each) do |example|
-    settables = Cmor::Core::Settings::Settable.all
-    Cmor::Core::Settings::Settable.delete_all
+    settings = Cmor::Core::Settings::Setting.all
+    Cmor::Core::Settings::Setting.delete_all
     example.run
-    settables.map(&:save!)
+    settings.map(&:save!)
   end
 
   describe "class methods" do
@@ -13,7 +13,7 @@ RSpec.describe Cmor::Core::Settings::Settable, type: :model do
 
     describe "#create" do
       it "registers a setting" do
-        expect { subject.create(namespace: :cmor_core_backend, key: :foo, default: "bar") }.to change { Cmor::Core::Settings::Settable.count }.by(1)
+        expect { subject.create(namespace: :cmor_core_backend, key: :foo, default: "bar") }.to change { Cmor::Core::Settings::Setting.count }.by(1)
       end
     end
 
@@ -24,7 +24,7 @@ RSpec.describe Cmor::Core::Settings::Settable, type: :model do
     describe "#find_by_namespace_and_key" do
       before(:each) { subject.create(namespace: :cmor_core_backend, key: :foo, default: "bar", validations: { presence: true }) }
 
-      it { expect(subject.where(namespace: :cmor_core_backend, key: :foo).first).to be_a(Cmor::Core::Settings::Settable) }
+      it { expect(subject.where(namespace: :cmor_core_backend, key: :foo).first).to be_a(Cmor::Core::Settings::Setting) }
     end
   end
 

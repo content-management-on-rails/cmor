@@ -1,11 +1,11 @@
 require "rails_helper"
 
-RSpec.describe "/de/backend/einstellungen/settables", type: :feature do
-  let(:resource_class) { Cmor::Core::Settings::Settable }
+RSpec.describe "/de/backend/einstellungen/settings", type: :feature do
+  let(:resource_class) { Cmor::Core::Settings::Setting }
 
   describe "REST actions" do
-    let(:resource) { create(:cmor_core_settings_settable) }
-    let(:resources) { create_list(:cmor_core_settings_settable, 3) }
+    let(:resource) { create(:cmor_core_settings_setting) }
+    let(:resources) { create_list(:cmor_core_settings_setting, 3) }
 
     # List
     it {
@@ -20,13 +20,13 @@ RSpec.describe "/de/backend/einstellungen/settables", type: :feature do
     it {
       expect(subject).to implement_update_action(self)
         .for(resource)
-        .within_form(".edit_settable") {
+        .within_form(".edit_setting") {
           # fill the needed form inputs via capybara here
           #
           # Example:
           #
           #     fill_in 'slider[name]', with: 'New name'
-          fill_in "settable[value]", with: "This is the new value"
+          fill_in "setting[value]", with: "This is the new value"
         }
         .updating
         .from(resource.attributes)

@@ -8,10 +8,10 @@ Cmor::Core::Settings.configure do |config|
   # Set the resources, that will be shown in the backend menu.
   #
   # Default: config.resources_controllers = -> {[
-  #            Cmor::Core::Settings::SettablesController
+  #            Cmor::Core::Settings::SettingsController
   #          ]}
   #
   config.resources_controllers = -> {[
-    Cmor::Core::Settings::SettablesController
+    Cmor::Core::Settings::SettingsController
   ]}
 end

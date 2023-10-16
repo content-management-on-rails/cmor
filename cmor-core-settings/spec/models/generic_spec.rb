@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe "ActiveRecord::Base models", type: :model do
   # rubocop:disable Lint/ConstantDefinitionInBlock
-  DEFAULT_SPECS_TO_RUN = [
+  DEFAULT_RUN = [
     :is_an_active_record,
     :is_instanciable,
     :valid_with_correct_attributes,
@@ -12,12 +12,13 @@ RSpec.describe "ActiveRecord::Base models", type: :model do
   # rubocop:enable Lint/ConstantDefinitionInBlock
 
   {
+    Cmor::Core::Settings::Setting => { skip: [:is_an_active_record] },
     Cmor::Core::Settings::Value => {}
   }.each do |model, options|
-    options.reverse_merge!(specs_to_run: DEFAULT_SPECS_TO_RUN, specs_to_skip: [])
-    specs_to_run = options.delete(:specs_to_run)
-    specs_to_skip = options.delete(:specs_to_skip)
-    specs = specs_to_run - specs_to_skip
+    options.reverse_merge!(run: DEFAULT_RUN, skip: [])
+    run = options.delete(:run)
+    skip = options.delete(:skip)
+    specs = run - skip
 
     describe model do
       if specs.include?(:is_an_active_record)

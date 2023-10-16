@@ -1,5 +1,5 @@
 Cmor::Core::Settings::Engine.routes.draw do
-  resources :settables
+  resources :settings
       
   root to: 'home#index'
 end

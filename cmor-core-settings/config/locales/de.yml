@@ -3,6 +3,19 @@ de:
     cmor/core/settings/engine: Einstellungen
   routes:
     cmor-core-settings-engine: einstellungen
+  activemodel:
+    models:
+      cmor/core/settings/setting:
+        one: Einstellung
+        other: Einstellungen
+    attributes:
+      cmor/core/settings/setting:
+        id: ID
+        default: Standardwert
+        namespace: Namensraum
+        key: Schlüssel
+        validations: Validierungen
+        value: Wert
   activerecord:
     models:
       cmor/core/settings/value:

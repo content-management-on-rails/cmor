@@ -1,6 +1,6 @@
 FactoryBot.define do
-  factory :cmor_core_settings_value, class: Cmor::Core::Settings::Value do
-    namespace { "Foo::Bar" }
+  factory :cmor_core_settings_setting, class: Cmor::Core::Settings::Setting do
+    sequence(:namespace) { |i| "namespace-#{i}" }
     sequence(:key) { |i| "key-#{i}" }
   end
 end

@@ -1,7 +1,7 @@
 module Cmor
   module Core
     module Settings
-      class Settable < Rao::ActiveCollection::Base
+      class Setting < Rao::ActiveCollection::Base
         attr_accessor :id, :key, :namespace, :default, :validations
 
         add_attribute_names :value

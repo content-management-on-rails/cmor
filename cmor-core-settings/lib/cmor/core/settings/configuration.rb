@@ -29,7 +29,7 @@ module Cmor
         define_option :resource_controllers, default: -> { [] }
         define_option :service_controllers, default: -> { [] }
         define_option :sidebar_controllers, default: -> { [] }
-        define_option :store, default: Cmor::Core::Settings::Settable
+        define_option :store, default: Cmor::Core::Settings::Setting
       end
     end
   end

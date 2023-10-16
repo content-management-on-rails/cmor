@@ -1,11 +1,11 @@
 module Cmor
   module Core
     module Settings
-      class SettablesController < Cmor::Core::Backend::ResourcesController::Base
+      class SettingsController < Cmor::Core::Backend::ResourcesController::Base
         include Rao::Query::Controller::QueryConcern
         
         def self.resource_class
-          Cmor::Core::Settings::Settable
+          Cmor::Core::Settings::Setting
         end
 
         def self.available_rest_actions
@@ -19,7 +19,7 @@ module Cmor
         end
 
         def permitted_params
-          params.require(:settable).permit!
+          params.require(:setting).permit(:value)
         end
 
         # set client_identifier in default url options
