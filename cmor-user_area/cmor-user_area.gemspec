@@ -22,4 +22,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency "rao-service"
   spec.add_dependency "active_model_otp", ">= 2.1.1"
   spec.add_dependency "active_model_serializers"
+  spec.add_dependency "cmor-core-settings"
 end

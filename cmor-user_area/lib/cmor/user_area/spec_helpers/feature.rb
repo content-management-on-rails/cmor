@@ -51,7 +51,7 @@ module Cmor::UserArea
         end
 
         if with_tfa
-          if Cmor::UserArea::Configuration.tfa_enabled? && user.has_tfa?
+          if Cmor::Core::Settings.get("cmor_user_area/tfa.enable") && user.has_tfa?
             tfa_path = "/#{I18n.locale}/#{I18n.t("routes.cmor_user_area_engine")}/#{I18n.t("routes.user_two_factor_authentications")}/new"
 
             expect(current_path).to eq(tfa_path)

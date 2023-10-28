@@ -17,6 +17,10 @@ cd spec/dummy
 # Use correct Gemfile
 sed -i "s|../Gemfile|../../../Gemfile|g" config/boot.rb
 
+# Setup Webpacker
+sed -i '/require "bootsnap\/setup"/a\require "webpacker\/engine"' config/application.rb
+rails webpacker:install
+
 # Setup SimpleForm
 rails generate simple_form:install --bootstrap
 
@@ -39,6 +43,10 @@ rails generate administrador:install
 
 # Setup cmor-core
 rails generate cmor:core:install
+
+# Setup cmor-core-settings
+rails generate cmor:core:settings:install
+rails cmor_core_settings:install:migrations
 
 # Setup cmor-core-backend
 rails generate cmor:core:backend:install

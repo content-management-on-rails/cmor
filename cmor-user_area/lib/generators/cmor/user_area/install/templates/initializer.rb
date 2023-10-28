@@ -45,13 +45,13 @@ Cmor::UserArea.configure do |config|
   #
   # default: config.enable_registrations = false
   #
-  config.enable_registrations = false
+  # config.enable_registrations = false
 
   # Enable/disable two factor authentication.
   #
   # default: config.enable_tfa = -> { true }
   #
-  config.enable_tfa = -> { true }
+  # config.enable_tfa = -> { true }
 
   # Set the options for the one time password.
   #
@@ -86,19 +86,19 @@ Cmor::UserArea.configure do |config|
   #
   # Default: config.application_name = Rails.application.class.name.deconstantize
   #
-  config.application_name = Rails.application.class.name.deconstantize
+  # config.application_name = Rails.application.class.name.deconstantize
 
   # E-Mail sender address for password reset emails.
   #
   # Default: config.email_from_address = -> { ENV.fetch("CMOR_USER_AREA_SENDER", "no-reply@domain.local") }
   #
-  config.email_from_address = -> { ENV.fetch("CMOR_USER_AREA_SENDER", "no-reply@domain.local") }
+  # config.email_from_address = -> { ENV.fetch("CMOR_USER_AREA_SENDER", "no-reply@domain.local") }
 
   # Allow/disallow users to remove their own accounts.
   #
   # default: config.allow_users_to_destroy_self = true
   #
-  config.allow_users_to_destroy_self = true
+  # config.allow_users_to_destroy_self = true
 
   # Additional rows to show in the current user table.
   #

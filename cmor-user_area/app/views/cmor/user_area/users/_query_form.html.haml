@@ -1,3 +1,3 @@
 = form.input :email_cont
-- if Cmor::UserArea::Configuration.tfa_enabled?
+- if Cmor::Core::Settings.get("cmor_user_area/tfa.enable")
   = form.input :tfa_state_eq, collection: resource_class.aasm(:tfa_state).states.collect { |s| [s.human_name, s.name] }

@@ -10,7 +10,8 @@ RSpec.describe "/de/backend/authentifizierung/users", type: :feature do
       let(:base_path) { "/de/backend/authentifizierung/users" }
 
       before(:each) do
-        allow(Cmor::UserArea::Configuration).to receive(:tfa_enabled?).and_return(true)
+        # allow(Cmor::UserArea::Configuration).to receive(:tfa_enabled?).and_return(true)
+        allow(Cmor::Core::Settings).to receive(:get).with("cmor_user_area/tfa.enable").and_return(true)
         visit(base_path)
       end
 
@@ -21,7 +22,8 @@ RSpec.describe "/de/backend/authentifizierung/users", type: :feature do
       let(:base_path) { "/de/backend/authentifizierung/users" }
 
       before(:each) do
-        allow(Cmor::UserArea::Configuration).to receive(:tfa_enabled?).and_return(false)
+        # allow(Cmor::UserArea::Configuration).to receive(:tfa_enabled?).and_return(false)
+        allow(Cmor::Core::Settings).to receive(:get).with("cmor_user_area/tfa.enable").and_return(false)
         visit(base_path)
       end
 

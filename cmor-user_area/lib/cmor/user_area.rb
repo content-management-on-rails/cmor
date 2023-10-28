@@ -4,6 +4,7 @@ require "active_model_serializers"
 require "authlogic"
 require "bcrypt"
 require "cmor-core-backend"
+require "cmor-core-settings"
 require "rao-service"
 
 require "cmor/user_area/version"
