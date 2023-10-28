@@ -20,6 +20,16 @@ module Cmor::Core::Settings
 
         # it { expect(setting).not_to allow_value("foo").for(:value) }
       end
+
+      describe "content serialization" do
+        describe "for arrays" do
+          subject { described_class.new }
+
+          before(:each) { subject.content = ["foo", "bar"] }
+
+          it { expect(subject.content).to eq(["foo", "bar"]) }
+        end
+      end
     end
   end
 end

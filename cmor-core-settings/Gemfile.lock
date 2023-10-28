@@ -1,7 +1,7 @@
 PATH
   remote: ../../rao/rao-active_collection
   specs:
-    rao-active_collection (0.0.49.pre)
+    rao-active_collection (0.0.51.pre)
       rails (>= 6.1)
       rao
 
@@ -39,7 +39,7 @@ PATH
       cmor-core (= 0.0.61.pre)
       cmor-core-backend (= 0.0.61.pre)
       rails (>= 7.0)
-      rao-active_collection
+      rao-active_collection (>= 0.0.51.pre)
 
 GEM
   remote: https://rubygems.org/

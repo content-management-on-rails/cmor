@@ -29,7 +29,10 @@ module Cmor
         define_option :resource_controllers, default: -> { [] }
         define_option :service_controllers, default: -> { [] }
         define_option :sidebar_controllers, default: -> { [] }
-        define_option :store, default: Cmor::Core::Settings::Setting
+
+        def self.register(namespace:, key:, type:, default:, validations: {})
+          Cmor::Core::Settings::Setting.create!(namespace: namespace, key: key, type: type, default: default, validations: validations)
+        end
       end
     end
   end

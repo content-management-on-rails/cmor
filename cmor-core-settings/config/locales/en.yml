@@ -14,6 +14,7 @@ en:
         default: Default value
         namespace: Namespace
         key: Key
+        type: Type
         validations: Validations
         value: Value
   activerecord:
@@ -24,14 +25,14 @@ en:
     attributes:
       cmor/core/settings/value:
         id: ID
-        namespace: Namespace
-        key: Key
         content: Inhalt
+        key: Key
+        namespace: Namespace
         created_at: Created at
         updated_at: Updated at
   cmor:
     core:
       settings:
-        settables:
+        settings:
           form:
-            value_hint: "Default: %{default_value}"
+            value_hint: "Default value: %{default_value}"
