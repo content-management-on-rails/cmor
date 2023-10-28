@@ -6,5 +6,4 @@ gemspec
 
 gem "cmor", path: "../"
 gem "cmor-core-settings", path: "../cmor-core-settings"
-gem "rao-active_collection", path: "~/projects/gems/rao/rao-active_collection"
 gem "rails", "~> 7.0"
