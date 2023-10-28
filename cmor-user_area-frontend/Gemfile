@@ -4,4 +4,4 @@ gemspec
 
 gem "cmor", path: "../"
 gem "cmor-user_area", path: "../cmor-user_area"
-gem "rails", ">= 7.0"
+gem "rails", "~> 7.0"

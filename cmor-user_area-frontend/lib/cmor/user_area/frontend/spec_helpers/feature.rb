@@ -54,7 +54,7 @@ module Cmor
             end
 
             if with_tfa
-              if Cmor::UserArea::Configuration.tfa_enabled? && user.has_tfa?
+              if Cmor::Core::Settings.get("cmor_user_area/tfa.enable") && user.has_tfa?
                 tfa_path = "/#{I18n.locale}/#{I18n.t("routes.cmor_user_area_frontend_engine")}/#{I18n.t("routes.user_two_factor_authentications")}/new"
 
                 expect(current_path).to eq(tfa_path)
@@ -93,12 +93,12 @@ module Cmor
           end
 
           def _setup_enabled_registrations
-            @_enabled_registrations = Cmor::UserArea::Configuration.enable_registrations
-            Cmor::UserArea::Configuration.enable_registrations = true
+            @_enabled_registrations = Cmor::Core::Settings.get("cmor_user_area/user.enable_registrations")
+            Cmor::Core::Settings.set("cmor_user_area/user.enable_registrations", true)
           end
 
           def _undo_setup_enabled_registrations
-            Cmor::UserArea::Configuration.enable_registrations = @_enabled_registrations
+            Cmor::Core::Settings.set("cmor_user_area/user.enable_registrations", @_enabled_registrations)
             remove_instance_variable(:@_enabled_registrations)
           end
         end
