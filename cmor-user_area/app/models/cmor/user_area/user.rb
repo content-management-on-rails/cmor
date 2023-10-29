@@ -34,7 +34,7 @@ module Cmor
 
         included do
           has_one_time_password Cmor::UserArea::Configuration.one_time_password_options
-          serialize :otp_backup_codes, Array
+          serialize :otp_backup_codes, Array, coder: JSON
 
           include AASM
 
