@@ -41,6 +41,8 @@ module Cmor
             if e.class.name == "PG::UndefinedTable"
               puts "[Cmor::Core::Settings::Settable] Table 'cmor_core_settings_values' does not exist. Please run 'rails cmor_core_settings:install:migrations && rails db:migrate'"
               nil
+            elsif e.class.name == "ActiveRecord::NoDatabaseError"
+              puts "[Cmor::Core::Settings::Settable] Could not connect to database. Please run 'rails db:create'"
             else
               raise e
             end
