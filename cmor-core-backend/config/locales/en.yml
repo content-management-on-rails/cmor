@@ -8,6 +8,9 @@ en:
           base:
             show_actions:
               back: Back
+              destroy: Destroy
+              edit: Edit
+              history: History
         settings_sidebars:
           show:
             font_size: "Fontsize"
