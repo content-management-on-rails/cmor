@@ -4,7 +4,7 @@
       %h1= @resource.human
     .col-xs-4.col-4
       #page-actions.btn-container-right
-        - if Cmor::UserArea::Configuration.allow_users_to_destroy_self
+        - if Cmor::Core::Settings.get("cmor_user_area/user.allow_users_to_destroy_self")
           .pull-right.text-right
             = link_to(cmor_user_area_frontend.current_user_path, method: :delete, class: 'btn btn-danger btn-responsive', 'data-confirm': I18n.t('confirmations.delete')) do
               %span.glyphicon.glyphicon-fire
