@@ -4,6 +4,9 @@ de:
   routes:
     cmor-core-settings-engine: einstellungen
   activemodel:
+    errors:
+      messages:
+        record_invalid: "Validierung fehlgeschlagen: %{errors}"
     models:
       cmor/core/settings/setting:
         one: Einstellung
