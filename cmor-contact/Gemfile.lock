@@ -1,11 +1,4 @@
 PATH
-  remote: ../../rao/rao-active_collection
-  specs:
-    rao-active_collection (0.0.51.pre)
-      rails (>= 6.1)
-      rao
-
-PATH
   remote: ../cmor-core-settings
   specs:
     cmor-core-settings (0.0.61.pre)
@@ -349,6 +342,9 @@ GEM
     rainbow (3.1.1)
     rake (13.0.6)
     rao (0.0.49.pre)
+    rao-active_collection (0.0.51.pre)
+      rails (>= 6.1)
+      rao
     rao-component (0.0.49.pre)
       haml-rails
       rails (>= 6.1)
@@ -561,7 +557,6 @@ DEPENDENCIES
   rails (~> 7.0)
   rails-dummy
   rails-i18n
-  rao-active_collection!
   rao-shoulda_matchers
   responders
   rspec-rails

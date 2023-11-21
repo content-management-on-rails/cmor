@@ -37,5 +37,16 @@ RSpec.describe Cmor::Contact::ContactRequestMailer, type: :mailer do
 
       it { expect(subject.from).to eq([sender]) }
     end
+
+    describe "delivery method options" do
+      describe "cmor_contact/contact_request.smtp.address" do
+        before(:each) do
+          expect(Cmor::Core::Settings).to receive(:get).with(:cmor_contact, "contact_request.smtp.address").and_return("smtp.example.com")
+          allow(Cmor::Core::Settings).to receive(:get).and_call_original
+        end
+
+        it { expect(subject.delivery_method.settings[:address]).to eq("smtp.example.com") }
+      end
+    end
   end
 end

@@ -10,10 +10,24 @@ module Cmor::Contact
 
       mail to: notification_recipients,
         from: notification_sender,
-        subject: notification_subject
+        subject: notification_subject,
+        delivery_method_options: delivery_method_options.call
     end
 
     private
+
+    def delivery_method_options
+      lambda do
+        {
+          user_name: Cmor::Core::Settings.get(:cmor_contact, "contact_request.smtp.user_name"),
+          password: Cmor::Core::Settings.get(:cmor_contact, "contact_request.smtp.password"),
+          address: Cmor::Core::Settings.get(:cmor_contact, "contact_request.smtp.address"),
+          port: Cmor::Core::Settings.get(:cmor_contact, "contact_request.smtp.port"),
+          authentication: Cmor::Core::Settings.get(:cmor_contact, "contact_request.smtp.authentication"),
+          enable_starttls_auto: Cmor::Core::Settings.get(:cmor_contact, "contact_request.smtp.enable_starttls_auto")
+        }
+      end
+    end
 
     def notification_subject
       # default_i18n_subject(application_name: Rails.application.class.to_s.split("::").first.underscore.humanize.titleize)

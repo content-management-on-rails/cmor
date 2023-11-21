@@ -31,5 +31,53 @@ Rails.application.config.to_prepare do
       default: nil,
       validations: {presence: true, format: {with: /\A\+[\d\s]+\z/}}
     )
+
+    config.register(
+      namespace: :cmor_contact,
+      key: "contact_request.smtp.user_name",
+      type: :string,
+      default: nil,
+      validations: {}
+    )
+
+    config.register(
+      namespace: :cmor_contact,
+      key: "contact_request.smtp.password",
+      type: :string,
+      default: nil,
+      validations: {}
+    )
+
+    config.register(
+      namespace: :cmor_contact,
+      key: "contact_request.smtp.address",
+      type: :string,
+      default: nil,
+      validations: {}
+    )
+
+    config.register(
+      namespace: :cmor_contact,
+      key: "contact_request.smtp.port",
+      type: :integer,
+      default: 587,
+      validations: {numericality: {only_integer: true, greater_than: 0, less_than: 65536}}
+    )
+
+    config.register(
+      namespace: :cmor_contact,
+      key: "contact_request.smtp.authentication",
+      type: :string,
+      default: "plain",
+      validations: {inclusion: {in: %w[plain login cram_md5]}}
+    )
+
+    config.register(
+      namespace: :cmor_contact,
+      key: "contact_request.smtp.enable_starttls_auto",
+      type: :boolean,
+      default: true,
+      validations: {inclusion: {in: %w[true false]}}
+    )
   end
 end
