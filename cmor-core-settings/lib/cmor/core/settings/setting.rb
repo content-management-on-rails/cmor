@@ -8,7 +8,7 @@ module Cmor
 
         validates :namespace, presence: true
         validates :key, presence: true, exclusion: { in: ->(record) { self.all.map(&:id) } }
-        validates :type, presence: true, inclusion: { in: [:array, :boolean, :hash, :string] }
+        validates :type, presence: true, inclusion: { in: [:array, :boolean, :hash, :integer, :string] }
 
         def self.generate_primary_key(record)
           raise "Namespace and key must be present" unless record.namespace.present? && record.key.present?
@@ -101,6 +101,8 @@ module Cmor
             else
               JSON.parse(value).with_indifferent_access.deep_symbolize_keys
             end
+          when :integer
+            value.to_i
           when :string
             value.to_s
           else
