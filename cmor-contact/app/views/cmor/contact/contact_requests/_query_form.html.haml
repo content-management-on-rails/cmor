@@ -1,10 +1,15 @@
-.col-12.mb-2
-  .form-inline
+.row
+  .col-12.col-md-6.col-xl
     = form.input :name_cont
+  .col-12.col-md-6.col-xl
     = form.input :email_cont
-    = form.input(:phone_cont) if resource_class.attribute_names.include?('phone')
-    = form.input(:subject_cont) if resource_class.attribute_names.include?('subject')
+  - if resource_class.attribute_names.include?('phone')
+    .col-12.col-md-6.col-xl
+      = form.input(:phone_cont)
+  - if resource_class.attribute_names.include?('subject')
+    .col-12.col-md-6.col-xl
+      = form.input(:subject_cont)
+  .col-12.col-md-6.col-xl
     = form.input :ip_address_cont
-.col-12.mb-2
-  .form-inline
+  .col-12.col-md-6.col-xl
     = form.input :message_cont
