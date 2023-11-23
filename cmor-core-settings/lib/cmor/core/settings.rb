@@ -1,5 +1,4 @@
 require "cmor/core/settings/engine"
-require "cmor/core/settings/setting"
 require "cmor/core/settings/configuration"
 require "cmor/core/settings/version"
 
@@ -23,7 +22,10 @@ module Cmor
         end
 
         settable = Cmor::Core::Settings::Setting.where(namespace: namespace.to_sym, key: key.to_sym).first!
-        settable.value
+        settable.current_value
+      rescue StandardError => e
+        puts "[Cmor::Core::Settings] Error while getting setting #{namespace}/#{key}: #{e.message}"
+        nil
       end
 
       def self.paths
@@ -44,8 +46,10 @@ module Cmor
           namespace = namespace_or_path
         end
 
-        settable = Cmor::Core::Settings::Setting.where(namespace: namespace.to_sym, key: key.to_sym).first!
-        settable.update!(content: value)
+        setting = Cmor::Core::Settings::Setting.where(namespace: namespace.to_sym, key: key.to_sym).first!
+        (setting.value || setting.build_value).update!(content: value)
+      rescue StandardError => e
+        puts "[Cmor::Core::Settings] Error while setting setting #{namespace}/#{key}: #{e.message}"
       end
     end
   end

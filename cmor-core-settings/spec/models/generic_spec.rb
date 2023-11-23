@@ -12,7 +12,7 @@ RSpec.describe "ActiveRecord::Base models", type: :model do
   # rubocop:enable Lint/ConstantDefinitionInBlock
 
   {
-    Cmor::Core::Settings::Setting => { skip: [:is_an_active_record] },
+    Cmor::Core::Settings::Setting => {},
     Cmor::Core::Settings::Value => {}
   }.each do |model, options|
     options.reverse_merge!(run: DEFAULT_RUN, skip: [])

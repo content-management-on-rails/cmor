@@ -1,2 +1,14 @@
 = form.object.human
-= form.input :value, hint: t(".value_hint", default_value: form.object.default)
+
+- if form.object.type == "array"
+  %h3= Cmor::Core::Settings::Value.model_name.human(count: :other)
+  #values
+    = form.fields_for :values do |value_form|
+      = render 'value_fields_array', f: value_form
+    .links.mb-4
+      = link_to_add_association t(".add_value"), form, :values, class: "btn btn-secondary"
+- else
+  %h3= Cmor::Core::Settings::Value.model_name.human
+  #values
+    = form.fields_for :value, (form.object.value || form.object.build_value) do |value_form|
+      = render 'value_fields', f: value_form

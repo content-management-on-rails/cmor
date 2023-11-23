@@ -2,6 +2,13 @@
 = table.row :namespace
 = table.row :key
 = table.row :type
-= table.row :value
+- if table.resource.type == "array"
+  = table.association :values do |resource|
+    - capture_haml do
+      %ul
+        - resource.values.each do |value|
+          %li= value.content
+- else
+  = table.association :value, label_method: :content
 = table.row :default
 = table.row :validations

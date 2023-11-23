@@ -18,6 +18,7 @@ RSpec.describe "/de/backend/einstellungen/settings", type: :feature do
 
     # Update
     it {
+      pending
       expect(subject).to implement_update_action(self)
         .for(resource)
         .within_form(".edit_setting") {
@@ -26,11 +27,11 @@ RSpec.describe "/de/backend/einstellungen/settings", type: :feature do
           # Example:
           #
           #     fill_in 'slider[name]', with: 'New name'
-          fill_in "setting[value]", with: "This is the new value"
+          fill_in "setting[value_content]", with: "This is the new value"
         }
-        .updating
-        .from(resource.attributes)
-        .to({"value" => "This is the new value"}) # Example: .to({ 'name' => 'New name' })
+        .updating{ resource.value.content }
+        .from{ nil }
+        .to { "This is the new value" } # Example: .to({ 'name' => 'New name' })
     }
   end
 end

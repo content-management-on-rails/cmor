@@ -14,10 +14,10 @@ RSpec.describe Cmor::Core::Settings do
     describe "#get" do
       it { expect(subject).to respond_to(:get) }
 
-      describe "when settable exists" do
-        let(:settable) { Cmor::Core::Settings::Setting.create!(namespace: :cmor_core_backend, key: :foo, type: String, default: "bar") }
+      describe "when setting exists" do
+        let(:setting) { Cmor::Core::Settings::Setting.create!(namespace: :cmor_core_backend, key: :foo, type: :string, default: "bar") }
 
-        before(:each) { settable }
+        before(:each) { setting }
 
         it { expect(subject.get(:cmor_core_backend, :foo)).to eq("bar") }
       end
@@ -27,7 +27,7 @@ RSpec.describe Cmor::Core::Settings do
       it { expect(subject).to respond_to(:set) }
 
       describe "persistence changes" do
-        let(:settable) { Cmor::Core::Settings::Setting.create!(namespace: :cmor_core_backend, key: :foo, type: String, default: nil) }
+        let(:settable) { Cmor::Core::Settings::Setting.create!(namespace: :cmor_core_backend, key: :foo, type: :string, default: nil) }
 
         before(:each) { settable }
         

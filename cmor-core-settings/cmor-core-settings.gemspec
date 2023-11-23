@@ -16,5 +16,5 @@ Gem::Specification.new do |spec|
 
   spec.files = Dir["{app,config,db,lib,spec/factories,spec/files}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
-  spec.add_dependency "rao-active_collection", ">= 0.0.51.pre"
+  spec.add_dependency "cocoon"
 end

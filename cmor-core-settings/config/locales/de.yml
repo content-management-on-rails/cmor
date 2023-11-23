@@ -3,14 +3,14 @@ de:
     cmor/core/settings/engine: Einstellungen
   routes:
     cmor-core-settings-engine: einstellungen
-  activemodel:
-    errors:
-      messages:
-        record_invalid: "Validierung fehlgeschlagen: %{errors}"
+  activerecord:
     models:
       cmor/core/settings/setting:
         one: Einstellung
         other: Einstellungen
+      cmor/core/settings/value:
+        one: Wert
+        other: Werte
     attributes:
       cmor/core/settings/setting:
         id: ID
@@ -20,17 +20,14 @@ de:
         type: Typ
         validations: Validierungen
         value: Wert
-  activerecord:
-    models:
-      cmor/core/settings/value:
-        one: Value
-        other: Values
-    attributes:
+        value_content: Wert
       cmor/core/settings/value:
         id: ID
         content: Inhalt
         key: Schlüssel
         namespace: Namensraum
+        setting: Einstellung
+        setting_id: Einstellung
         created_at: Erstellt am
         updated_at: Aktualisiert am
   cmor:
@@ -38,4 +35,7 @@ de:
       settings:
         settings:
           form:
+            add_value: Wert hinzufügen
             value_hint: "Standardwert: %{default_value}"
+          value_fields:
+            remove_value: Wert entfernen

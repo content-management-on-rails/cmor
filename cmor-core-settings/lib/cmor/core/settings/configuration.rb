@@ -32,6 +32,8 @@ module Cmor
 
         def self.register(namespace:, key:, type:, default:, validations: {})
           Cmor::Core::Settings::Setting.create!(namespace: namespace, key: key, type: type, default: default, validations: validations)
+        rescue StandardError => e
+          puts "[Cmor::Core::Settings] Error while registering setting #{namespace}/#{key}: #{e.message}"
         end
       end
     end

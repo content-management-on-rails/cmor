@@ -13,11 +13,15 @@ module Cmor::Core::Settings
     private
 
     def load_collection_scope
-      with_conditions_from_query(super)
+      super.eager_load(:values)
     end
 
     def permitted_params
-      params.require(:setting).permit(:value)
+      if @resource.type == "array"
+        params.require(:setting).permit(values_attributes: [:_destroy, :id, :content])
+      else
+        params.require(:setting).permit(value_attributes: [:_destroy, :id, :content])
+      end
     end
   end
 end

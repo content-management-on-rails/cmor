@@ -2,10 +2,9 @@ module Cmor::Core::Settings
   class Value < ApplicationRecord
     attr_accessor :default, :validations
 
+    belongs_to :setting, inverse_of: :values
+
     serialize :content, coder: JSON
-    
-    validates :namespace, presence: true
-    validates :key, presence: true, uniqueness: { scope: :namespace }
 
     after_initialize :set_defaults
     after_initialize :update_validations

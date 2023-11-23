@@ -1,7 +1,11 @@
 .row
-  .col-12.col-md-4
-    = form.input :namespace_cont
-  .col-12.col-md-4
+  .col-12.col-xl
+    = form.input :namespace_eq, collection: Cmor::Core::Settings::Setting.pluck(:namespace).uniq
+  .col-12.col-xl
     = form.input :key_cont
-  .col-12.col-md-4
-    = form.input :type_cont
+  .col-12.col-xl
+    = form.input :type_eq, collection: Cmor::Core::Settings::Setting.pluck(:type).uniq
+  .col-12.col-xl
+    = form.input :default_cont
+  .col-12.col-xl
+    = form.input :content_cont, association: :values

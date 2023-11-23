@@ -1,0 +1,7 @@
+.nested-fields.mb-4
+  - case f.object.setting.type.to_sym
+  - when :boolean
+    = f.input :content, as: :select, collection: [true, false]
+  - else  
+    = f.input :content
+  %hr
