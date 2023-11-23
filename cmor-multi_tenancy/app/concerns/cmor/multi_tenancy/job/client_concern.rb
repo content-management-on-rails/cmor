@@ -14,7 +14,10 @@ module Cmor
 
           # set current client when performing jobs
           around_perform do |job, block|
-            Cmor::MultiTenancy.with_client(job.arguments.last[:current_client]) do
+            current_client = job.arguments.last.delete(:current_client)
+            job.arguments.pop if job.arguments.last.empty?
+
+            Cmor::MultiTenancy.with_client(current_client) do
               block.call
             end
           end
