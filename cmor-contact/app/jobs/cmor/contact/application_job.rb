@@ -1,6 +1,6 @@
 module Cmor
   module Contact
-    class ApplicationJob < ActiveJob::Base
+    class ApplicationJob < ::ApplicationJob
     end
   end
 end
