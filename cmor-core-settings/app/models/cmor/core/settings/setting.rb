@@ -76,7 +76,7 @@ module Cmor::Core::Settings
         end
       when :integer
         value.to_i
-      when :string
+      when :string, :password
         value.to_s
       else
         raise "Unknown type: #{type.inspect}"
