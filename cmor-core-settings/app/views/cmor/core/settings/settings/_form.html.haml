@@ -4,7 +4,7 @@
   %h3= Cmor::Core::Settings::Value.model_name.human(count: :other)
   #values
     = form.fields_for :values do |value_form|
-      = render 'value_fields_array', f: value_form
+      = render 'value_fields_for_array', f: value_form
     .links.mb-4
       = link_to_add_association t(".add_value"), form, :values, class: "btn btn-secondary"
 - else
