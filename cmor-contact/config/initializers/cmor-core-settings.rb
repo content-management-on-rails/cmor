@@ -43,7 +43,7 @@ Rails.application.config.to_prepare do
     config.register(
       namespace: :cmor_contact,
       key: "contact_request.smtp.password",
-      type: :string,
+      type: :password,
       default: nil,
       validations: {}
     )
