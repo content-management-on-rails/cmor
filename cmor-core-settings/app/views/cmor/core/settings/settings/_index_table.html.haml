@@ -2,5 +2,7 @@
 = table.column :namespace, sort: true
 = table.column :key, sort: true
 = table.column :type, sort: true
-= table.column :value_content
+= table.column :value_content do |resource|
+  - capture_haml do
+    = resource.type == "password" ?  ("*" * 32) : resource.value_content
 = table.column :default, sort: true

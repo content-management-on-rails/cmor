@@ -35,16 +35,16 @@ echo "RouteTranslator.config do |config|" >> config/initializers/route_translato
 echo "  config.force_locale = true" >> config/initializers/route_translator.rb
 echo "end" >> config/initializers/route_translator.rb
 
-# setup administrador
-rails generate administrador:install
+# Setup ActiveRecord encryption
+sed -i '/end/i\  config.active_record.encryption.primary_key = "test"' config/environments/test.rb
+sed -i '/end/i\  config.active_record.encryption.deterministic_key = "test"' config/environments/test.rb
+sed -i '/end/i\  config.active_record.encryption.key_derivation_salt = "test"' config/environments/test.rb
 
 # Setup ActiveStorage
 rails active_storage:install
 
-# Setup i18n
-touch config/initializers/i18n.rb
-echo "Rails.application.config.i18n.available_locales = [:en, :de]" >> config/initializers/i18n.rb
-echo "Rails.application.config.i18n.default_locale    = :de" >> config/initializers/i18n.rb
+# setup Administrador
+rails generate administrador:install
 
 # Setup Cmor::Core
 rails generate cmor:core:install

@@ -9,9 +9,11 @@ RSpec.describe Cmor::Core::Settings::Setting, type: :model do
   end
 
   describe "validations" do
+    subject { build(:cmor_core_settings_setting) }
+
     describe "type" do
       it { expect(subject).to validate_presence_of(:type) }
-      it { expect(subject).to validate_inclusion_of(:type).in_array([:array, :boolean, :hash, :integer, :string]) }
+      it { expect(subject).to validate_inclusion_of(:type).in_array([:array, :boolean, :hash, :integer, :password, :string]) }
     end
   end
 

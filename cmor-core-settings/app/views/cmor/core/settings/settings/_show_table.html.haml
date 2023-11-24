@@ -7,8 +7,10 @@
     - capture_haml do
       %ul
         - resource.values.each do |value|
-          %li= value.content
+          %li= resource.type == "password" ?  ("*" * 32) : value.content
 - else
-  = table.association :value, label_method: :content
+  = table.association :value, label_method: :content do |resource|
+    - capture_haml do
+      = resource.type == "password" ?  ("*" * 32) : resource.current_value
 = table.row :default
 = table.row :validations

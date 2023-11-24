@@ -10,7 +10,7 @@ module Cmor::Core::Settings
 
     validates :namespace, presence: true
     validates :key, presence: true, uniqueness: { scope: :namespace }
-    validates :type, presence: true, inclusion: { in: %w(array boolean hash integer string) }
+    validates :type, presence: true, inclusion: { in: %w(array boolean hash integer password string) }
 
     serialize :default, coder: JSON
 

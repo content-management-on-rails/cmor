@@ -2,6 +2,8 @@
   - case f.object.setting.type.to_sym
   - when :boolean
     = f.input :content, as: :select, collection: [true, false]
+  - when :password
+    = f.input :content, as: :password
   - else  
     = f.input :content
   %hr
