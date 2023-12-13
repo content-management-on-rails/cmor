@@ -5,8 +5,52 @@ require "cmor/core/settings/version"
 module Cmor
   module Core
     module Settings
+      class AfterInitialize
+        def self.set(*args)
+          puts "[Cmor::Core::Settings] Caching setting #{args}"
+          (@cache ||= []) << args
+        end
+
+        def self.run!
+          puts "[Cmor::Core::Settings] Setting after_initialize settings:"
+          return unless @cache.respond_to?(:each)
+          @cache.each do |args|
+            puts "[Cmor::Core::Settings] Setting #{args}."
+            Cmor::Core::Settings.set(*args)
+          end
+        end
+      end
+
+      class Delayed
+        def self.set(*args)
+          puts "[Cmor::Core::Settings] Caching setting #{args}."
+          (@cache ||= []) << args
+        end
+
+        def self.run_later!
+          Cmor::Core::Settings::SetCachedJob.perform_later
+        end
+
+        def self.run!
+          puts "[Cmor::Core::Settings] Setting delyed settings:"
+          return unless @cache.respond_to?(:each)
+          @cache.each do |args|
+            puts "[Cmor::Core::Settings] Setting #{args}"
+            Cmor::Core::Settings.set(*args)
+          end
+        end
+      end
+
       def self.configure
         yield Configuration
+      end
+
+      def self.after_initialize
+        AfterInitialize
+      end
+
+      def self.delayed
+        Delayed
       end
 
       # Usage:
@@ -49,7 +93,7 @@ module Cmor
         setting = Cmor::Core::Settings::Setting.where(namespace: namespace.to_sym, key: key.to_sym).first!
         (setting.value || setting.build_value).update!(content: value)
       rescue StandardError => e
-        puts "[Cmor::Core::Settings] Error while setting setting #{namespace}/#{key}: #{e.message}"
+        puts "[Cmor::Core::Settings] Error while setting value for #{namespace}/#{key}: #{e.message}"
       end
     end
   end

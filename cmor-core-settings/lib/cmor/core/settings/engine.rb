@@ -10,6 +10,11 @@ module Cmor
           # g.form_builder :simple_form
           # g.template_engine :haml
         end
+
+        config.after_initialize do
+          Cmor::Core::Settings.after_initialize.run!
+          Cmor::Core::Settings.delayed.run_later!
+        end
       end
     end
   end
