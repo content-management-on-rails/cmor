@@ -32,7 +32,7 @@ module Cmor
         end
 
         def self.run!
-          puts "[Cmor::Core::Settings] Setting delyed settings:"
+          puts "[Cmor::Core::Settings] Setting delayed settings:"
           return unless @cache.respond_to?(:each)
           @cache.each do |args|
             puts "[Cmor::Core::Settings] Setting #{args}"
