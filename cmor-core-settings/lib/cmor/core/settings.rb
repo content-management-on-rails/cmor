@@ -59,6 +59,11 @@ module Cmor
       #   self.get("foo/bar.baz")    # => :qux
       #
       def self.get(namespace_or_path, key = nil)
+        unless Cmor::Core::Settings::Setting.table_exists?
+          puts "[Cmor::Core::Settings] Table Cmor::Core::Settings::Setting does not exist. Skipping."
+          return nil
+        end
+
         if namespace_or_path.to_s.include?("/") && key.nil?
           namespace, key = namespace_or_path.to_s.split("/")
         else
@@ -82,6 +87,11 @@ module Cmor
       #   self.set("foo/bar.baz", :qux)
       #
       def self.set(*args)
+        unless Cmor::Core::Settings::Setting.table_exists?
+          puts "[Cmor::Core::Settings] Table Cmor::Core::Settings::Setting does not exist. Skipping."
+          return nil
+        end
+
         if args.size == 2
           namespace_or_path, value = args
           namespace, key = namespace_or_path.to_s.split("/")
