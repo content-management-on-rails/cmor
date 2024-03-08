@@ -11,7 +11,7 @@ module Cmor
           def as_json
             {
               id: @resource.id,
-              attributes: @resource.as_json(except: [:id]).merge(associations),
+              attributes: @resource.as_json.merge(associations),
               errors: serialize_errors(@resource)
             }.compact
           end
