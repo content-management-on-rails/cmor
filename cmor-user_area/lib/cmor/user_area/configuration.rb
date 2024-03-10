@@ -20,6 +20,10 @@ module Cmor
         def cmor
           Cmor
         end
+
+        def settings
+          Cmor::Core::Settings
+        end
       end
 
       @values = {}
