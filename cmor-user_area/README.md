@@ -25,6 +25,10 @@ Install the migrations and migrate:
     #> rails cmor_user_area:install:migrations
     #> rails db:migrate
 
+## Generating feature specs
+
+    #> rails g cmor:user_area:feature_specs
+
 ## Contributing
 Contribution directions go here.
 
