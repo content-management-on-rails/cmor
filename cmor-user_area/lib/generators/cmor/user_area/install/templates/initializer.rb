@@ -57,9 +57,9 @@ Cmor::UserArea.configure do |config|
   #
   # See https://github.com/heapsource/active_model_otp
   #
-  # default: config.one_time_password_options = { one_time_backup_codes: true, if: -> { false } }
+  # default: config.one_time_password_options = { one_time_backup_codes: true }
   #
-  config.one_time_password_options = {one_time_backup_codes: true, if: -> { false }}
+  config.one_time_password_options = {one_time_backup_codes: true}
 
   # Set the base mailer
   #
