@@ -4,7 +4,7 @@ RSpec.describe "User Area -> Registration", type: :feature do
   before(:each) { I18n.locale = :de }
 
   describe "new registration" do
-    around(:each) { |example| with_enabled_registrations { example } }
+    around(:each) { |example| with_enabled_registrations { example.run } }
 
     context "when not signed in" do
       let(:user_attributes) { attributes_for(:cmor_user_area_user) }

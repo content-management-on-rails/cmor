@@ -21,6 +21,10 @@ Install initalizer and routes:
 
     > rails g cmor:user_area:frontend:install
 
+## Generating feature specs
+
+    #> rails g cmor:user_area:frontend:feature_specs
+
 ## Contributing
 
 Contribution directions go here.

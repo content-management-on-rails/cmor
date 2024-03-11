@@ -18,7 +18,7 @@ module Cmor
 
           bootstrap_version = options.delete(:bootstrap_version)
 
-          send("render_with_bootstrap_#{bootstrap_version}", options)
+          send(:"render_with_bootstrap_#{bootstrap_version}", options)
         end
 
         private

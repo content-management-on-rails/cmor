@@ -21,7 +21,7 @@ module Cmor
               fill_in "user[password]", with: user_attributes[:password]
               fill_in "user[password_confirmation]", with: user_attributes[:password]
 
-              submit(Cmor::UserArea::User.model_name.human, :create)
+              find("input[type='submit']").click
             end
           end
 
@@ -39,7 +39,6 @@ module Cmor
           #    end
           #
           def sign_in(user, otp_code: nil, with_tfa: true, sign_in_path: nil)
-            # sign_in_path ||= "/#{I18n.locale}/#{I18n.t("routes.cmor_user_area_frontend_engine")}/#{I18n.t("routes.user_session")}/new"
             sign_in_path ||= Cmor::UserArea::Frontend::Engine.routes.url_helpers.url_for([:new, Cmor::UserArea::UserSession, {only_path: true}])
 
             visit(sign_in_path)
@@ -60,7 +59,7 @@ module Cmor
                 expect(current_path).to eq(tfa_path)
 
                 within("#new_user_two_factor_authentication") do
-                  fill_in "user_two_factor_authentication[code]", with: (otp_code || user.otp_code)
+                  fill_in "user_two_factor_authentication[code]", with: otp_code || user.otp_code
 
                   click_on I18n.t("helpers.submit.user_two_factor_authentication.create")
                 end

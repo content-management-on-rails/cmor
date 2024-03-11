@@ -1,6 +1,11 @@
 require "rails_helper"
 
 RSpec.describe "User Area -> Authentication", type: :feature do
+  before(:each) do
+    allow(Cmor::Core::Settings).to receive(:get).and_call_original
+    allow(Cmor::Core::Settings).to receive(:get).with("cmor_user_area/tfa.enable").and_return(true)
+  end
+
   before(:each) { I18n.locale = :de }
 
   describe "sign in" do
@@ -38,7 +43,7 @@ RSpec.describe "User Area -> Authentication", type: :feature do
       end
 
       it "should sign in" do
-        sign_in(user, otp_code: user.otp_backup_codes.first)
+        sign_in(user, with_tfa: true, otp_code: user.otp_backup_codes.first)
         expect(page.body).to include(I18n.t("messages.success.cmor_user_area_frontend.signed_in"))
       end
 

@@ -6,5 +6,5 @@
   - else
     .btn-group
       = link_to t('.sign_in'), cmor_user_area_frontend.url_for([:new, Cmor::UserArea::UserSession]), class: 'btn btn-primary'
-      - if Cmor::UserArea::Configuration.enable_registrations
+      - if Cmor::Core::Settings.get("cmor_user_area/user.enable_registrations")
         = link_to t('.new'), cmor_user_area_frontend.new_current_user_path, class: 'btn btn-secondary'

@@ -30,7 +30,8 @@ RSpec.describe "/de/benutzer/profil" do
     let(:user) { create(:cmor_user_area_user, :authenticable) }
 
     before(:each) do
-      allow(Cmor::UserArea::Configuration).to receive(:tfa_enabled?).and_return(true)
+      allow(Cmor::Core::Settings).to receive(:get).and_call_original
+      allow(Cmor::Core::Settings).to receive(:get).with("cmor_user_area/tfa.enable").and_return(true)
       sign_in(user, with_tfa: false)
       visit(base_path)
     end
@@ -42,7 +43,8 @@ RSpec.describe "/de/benutzer/profil" do
     let(:user) { create(:cmor_user_area_user, :authenticable) }
 
     before(:each) do
-      allow(Cmor::UserArea::Configuration).to receive(:tfa_enabled?).and_return(false)
+      allow(Cmor::Core::Settings).to receive(:get).and_call_original
+      allow(Cmor::Core::Settings).to receive(:get).with("cmor_user_area/tfa.enable").and_return(false)
       sign_in(user, with_tfa: false)
       visit(base_path)
     end

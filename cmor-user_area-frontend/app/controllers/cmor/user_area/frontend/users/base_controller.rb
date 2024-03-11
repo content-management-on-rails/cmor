@@ -34,7 +34,7 @@ module Cmor
           def create
             @resource = resource_class.new(permitted_params)
             flash[:notice] = I18n.t("messages.confirmations.cmor_user_area_frontend.send_instructions") if @resource.save && !request.xhr?
-            respond_with @resource, location: after_registration_url
+            respond_with @resource, location: after_sign_up_url
           end
 
           def update
@@ -52,13 +52,12 @@ module Cmor
 
           private
 
-          def after_registration_url
-            # new_user_session_path
-            url_for([:new, Cmor::UserArea::UserSession])
+          def after_sign_up_url
+            instance_exec(self, &Configuration.after_sign_up_url)
           end
 
           def load_resource
-            @resource = send("current_#{resource_class.name.demodulize.underscore}".to_sym)
+            @resource = send(:"current_#{resource_class.name.demodulize.underscore}")
           end
 
           def permitted_params

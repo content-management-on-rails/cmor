@@ -68,7 +68,7 @@ module Cmor
           def current_session(type)
             type = type.to_s
             type << "_session" unless type.end_with?("_session")
-            send("current_#{type}".to_sym)
+            send(:"current_#{type}")
           end
 
           def handle_authentication_failure

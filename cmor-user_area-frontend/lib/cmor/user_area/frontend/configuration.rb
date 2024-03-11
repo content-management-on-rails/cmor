@@ -13,7 +13,7 @@ module Cmor
               @values[key]
             end
 
-            define_singleton_method("#{key}=") do |value|
+            define_singleton_method(:"#{key}=") do |value|
               @values[key] = value
             end
           end
@@ -26,6 +26,8 @@ module Cmor
         define_option :after_sign_in_url, default: ->(controller) { main_app.root_path }
 
         define_option :after_sign_out_url, default: ->(controller) { main_app.root_path }
+
+        define_option :after_sign_up_url, default: ->(controller) { main_app.root_path }
       end
     end
   end

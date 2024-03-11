@@ -5,6 +5,12 @@ Cmor::UserArea::Frontend.configure do |config|
   #
   config.base_controller = "<%= base_controller_class_name %>"
 
+  # Where to redirect to after successful sign up
+  #
+  # Default: config.after_sign_up_url = ->(controller) { main_app.root_path }
+  #
+  config.after_sign_up_url = ->(controller) { main_app.root_path }
+
   # Where to redirect to after successful login
   #
   # Default: config.after_sign_in_url = ->(controller) { main_app.root_path }
