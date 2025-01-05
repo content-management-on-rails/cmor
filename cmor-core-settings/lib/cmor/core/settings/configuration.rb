@@ -31,7 +31,11 @@ module Cmor
         define_option :sidebar_controllers, default: -> { [] }
         define_option :register_method, default: ->(namespace:, key:, type:, default:, validations: {}) {
           ActiveSupport.on_load(:active_record) do
-            Cmor::Core::Settings::Setting.where(namespace: namespace, key: key).first_or_create!(namespace: namespace, key: key, type: type, default: default, validations: validations)
+            begin
+              Cmor::Core::Settings::Setting.where(namespace: namespace, key: key).first_or_create!(namespace: namespace, key: key, type: type, default: default, validations: validations)
+            rescue => e
+              puts "[Cmor::Core::Settings] Error while registering setting #{namespace}/#{key}: #{e.message}"
+            end
           end
         }
 
