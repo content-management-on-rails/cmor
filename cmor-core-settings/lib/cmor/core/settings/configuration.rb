@@ -30,7 +30,9 @@ module Cmor
         define_option :service_controllers, default: -> { [] }
         define_option :sidebar_controllers, default: -> { [] }
         define_option :register_method, default: ->(namespace:, key:, type:, default:, validations: {}) {
-          Cmor::Core::Settings::Setting.where(namespace: namespace, key: key).first_or_create!(namespace: namespace, key: key, type: type, default: default, validations: validations)
+          ActiveSupport.on_load(:active_record) do
+            Cmor::Core::Settings::Setting.where(namespace: namespace, key: key).first_or_create!(namespace: namespace, key: key, type: type, default: default, validations: validations)
+          end
         }
 
         def self.register(namespace:, key:, type:, default:, validations: {})
