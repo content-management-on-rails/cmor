@@ -27,9 +27,9 @@ module Cmor
           (@cache ||= []) << args
         end
 
-        def self.run_later!
-          Cmor::Core::Settings::SetCachedJob.perform_later
-        end
+        # def self.run_later!
+        #   Cmor::Core::Settings::SetCachedJob.perform_later
+        # end
 
         def self.run!
           puts "[Cmor::Core::Settings] Setting delayed settings:"
@@ -45,13 +45,13 @@ module Cmor
         yield Configuration
       end
 
-      def self.after_initialize
-        AfterInitialize
-      end
+      # def self.after_initialize
+      #   AfterInitialize
+      # end
 
-      def self.delayed
-        Delayed
-      end
+      # def self.delayed
+      #   Delayed
+      # end
 
       # Usage:
       #
