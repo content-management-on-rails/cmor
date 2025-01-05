@@ -1,5 +1,5 @@
 module Cmor::Core::Settings
-  class Setting < ApplicationRecord
+  class Setting < ActiveRecord::Base
     self.inheritance_column = nil
     
     has_many :values, inverse_of: :setting, dependent: :destroy, autosave: true
