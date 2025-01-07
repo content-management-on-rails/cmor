@@ -1,4 +1,4 @@
-Rails.application.config.to_prepare do
+Rails.application.config.after_initialize do
   Cmor::Core::Settings.configure do |config|
     config.register(
       namespace: :cmor_contact,

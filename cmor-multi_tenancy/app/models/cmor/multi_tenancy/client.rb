@@ -1,5 +1,5 @@
 module Cmor::MultiTenancy
-  class Client < ApplicationRecord
+  class Client < ActiveRecord::Base
     validates :identifier, presence: true, uniqueness: true, format: {with: /\A[a-z0-9-]+\z/}, length: {minimum: 2, maximum: 63}
     validates :title, presence: true, uniqueness: true
 

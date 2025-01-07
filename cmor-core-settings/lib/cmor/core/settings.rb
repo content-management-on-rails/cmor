@@ -21,37 +21,9 @@ module Cmor
         end
       end
 
-      class Delayed
-        def self.set(*args)
-          puts "[Cmor::Core::Settings] Caching setting #{args}."
-          (@cache ||= []) << args
-        end
-
-        # def self.run_later!
-        #   Cmor::Core::Settings::SetCachedJob.perform_later
-        # end
-
-        def self.run!
-          puts "[Cmor::Core::Settings] Setting delayed settings:"
-          return unless @cache.respond_to?(:each)
-          @cache.each do |args|
-            puts "[Cmor::Core::Settings] Setting #{args}"
-            Cmor::Core::Settings.set(*args)
-          end
-        end
-      end
-
       def self.configure
         yield Configuration
       end
-
-      # def self.after_initialize
-      #   AfterInitialize
-      # end
-
-      # def self.delayed
-      #   Delayed
-      # end
 
       # Usage:
       #
